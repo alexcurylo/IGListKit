@@ -23,7 +23,7 @@
 
 - (void)test_whenUpdatingItems_thatArraysAreEqual {
     NSArray *objects = @[@0, @1, @2];
-    NSArray *sectionControllers = @[@"a", @"b", @"c"];
+    NSArray *sectionControllers = @[[IGListTestSection new], [IGListTestSection new], [IGListTestSection new]];
     IGListSectionMap *map = [[IGListSectionMap alloc] initWithMapTable:[NSMapTable strongToStrongObjectsMapTable]];
     [map updateWithObjects:objects sectionControllers:sectionControllers];
     XCTAssertEqualObjects(objects, map.objects);
@@ -31,7 +31,7 @@
 
 - (void)test_whenUpdatingItems_thatSectionControllersAreMappedForSection {
     NSArray *objects = @[@0, @1, @2];
-    NSArray *sectionControllers = @[@"a", @"b", @"c"];
+    NSArray *sectionControllers = @[[IGListTestSection new], [IGListTestSection new], [IGListTestSection new]];
     IGListSectionMap *map = [[IGListSectionMap alloc] initWithMapTable:[NSMapTable strongToStrongObjectsMapTable]];
     [map updateWithObjects:objects sectionControllers:sectionControllers];
     XCTAssertEqualObjects([map sectionControllerForSection:1], sectionControllers[1]);
@@ -39,7 +39,7 @@
 
 - (void)test_whenUpdatingItems_thatSectionControllersAreMappedForItem {
     NSArray *objects = @[@0, @1, @2];
-    NSArray *sectionControllers = @[@"a", @"b", @"c"];
+    NSArray *sectionControllers = @[[IGListTestSection new], [IGListTestSection new], [IGListTestSection new]];
     IGListSectionMap *map = [[IGListSectionMap alloc] initWithMapTable:[NSMapTable strongToStrongObjectsMapTable]];
     [map updateWithObjects:objects sectionControllers:sectionControllers];
     XCTAssertEqual([map sectionControllerForObject:objects[1]], sectionControllers[1]);
@@ -47,7 +47,7 @@
 
 - (void)test_whenUpdatingItems_thatSectionsAreMappedForSectionController {
     NSArray *objects = @[@0, @1, @2];
-    NSArray *sectionControllers = @[@"a", @"b", @"c"];
+    NSArray *sectionControllers = @[[IGListTestSection new], [IGListTestSection new], [IGListTestSection new]];
     IGListSectionMap *map = [[IGListSectionMap alloc] initWithMapTable:[NSMapTable strongToStrongObjectsMapTable]];
     [map updateWithObjects:objects sectionControllers:sectionControllers];
     XCTAssertEqual([map sectionForSectionController:sectionControllers[1]], 1);
@@ -55,7 +55,7 @@
 
 - (void)test_whenUpdatingItems_withUnknownItem_thatSectionControllerIsNil {
     NSArray *objects = @[@0, @1, @2];
-    NSArray *sectionControllers = @[@"a", @"b", @"c"];
+    NSArray *sectionControllers = @[[IGListTestSection new], [IGListTestSection new], [IGListTestSection new]];
     IGListSectionMap *map = [[IGListSectionMap alloc] initWithMapTable:[NSMapTable strongToStrongObjectsMapTable]];
     [map updateWithObjects:objects sectionControllers:sectionControllers];
     XCTAssertNil([map sectionControllerForObject:@4]);
@@ -71,7 +71,7 @@
 
 - (void)test_whenEnumeratingMap_withStopFlagSet_thatEnumerationEndsEarly {
     NSArray *objects = @[@0, @1, @2];
-    NSArray *sectionControllers = @[@"a", @"b", @"c"];
+    NSArray *sectionControllers = @[[IGListTestSection new], [IGListTestSection new], [IGListTestSection new]];
     IGListSectionMap *map = [[IGListSectionMap alloc] initWithMapTable:[NSMapTable strongToStrongObjectsMapTable]];
     [map updateWithObjects:objects sectionControllers:sectionControllers];
     __block NSInteger counter = 0;
@@ -84,7 +84,7 @@
 
 - (void)test_whenAccessingOOBSection_thatNilIsReturned {
     NSArray *objects = @[@0, @1, @2];
-    NSArray *sectionControllers = @[@"a", @"b", @"c"];
+    NSArray *sectionControllers = @[[IGListTestSection new], [IGListTestSection new], [IGListTestSection new]];
     IGListSectionMap *map = [[IGListSectionMap alloc] initWithMapTable:[NSMapTable strongToStrongObjectsMapTable]];
     [map updateWithObjects:objects sectionControllers:sectionControllers];
     XCTAssertNil([map objectForSection:4]);
